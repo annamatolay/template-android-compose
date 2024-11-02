@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -36,27 +37,47 @@ android {
         }
     }
     buildFeatures {
-        // TODO: remove build config if not needed
-        buildConfig = false
+        buildConfig = true
         compose = true
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
-
+ksp {
+    arg("KOIN_CONFIG_CHECK","true")
+    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
+}
 dependencies {
-
+    // Core
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+    implementation(platform(libs.androidx.compose.bom))
+    // 3rd-party
+    implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.annotations)
+    implementation(libs.koin.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.timber)
+    implementation(platform(libs.koin.bom))
+    ksp(libs.koin.ksp)
+
+    // Testing
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(libs.androidx.ui.tooling)
+    testImplementation(libs.junit)
+    // 3rd-party (testing)
+    testImplementation(libs.koin.test.junit4)
 }
