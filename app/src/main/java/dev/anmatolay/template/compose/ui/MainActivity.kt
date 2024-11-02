@@ -1,4 +1,4 @@
-package dev.anmatolay.template.compose
+package dev.anmatolay.template.compose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
