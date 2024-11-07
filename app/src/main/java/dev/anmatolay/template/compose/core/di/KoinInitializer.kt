@@ -12,10 +12,18 @@ object KoinInitializer {
         startKoin {
             androidLogger()
             androidContext(application)
+//            module {
+//                single<UserProperty> { UserPropertyImpl }
+//            }
             modules(
+//                module {
+//                    single<UserProperty> { UserPropertyImpl }
+//                },
                 DataModule().module,
                 DomainModule().module,
                 UIModule().module,
+                CoreUtilModule().module,
+                FirebaseModule().module,
             )
         }
     }
