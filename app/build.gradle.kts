@@ -53,7 +53,17 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    // TODO: remove if not needed by mockk
+//    testOptions.unitTests.all {
+//        it.jvmArgs(
+////            "-Dnet.bytebuddy.experimental=true"
+////            "-XX:+EnableDynamicAgentLoading",
+////            "--add-opens java.base/dev.anmatolay.template.compose=ALL-UNNAMED",
+//        )
+//    }
 }
+
 ksp {
     arg("KOIN_CONFIG_CHECK", "true")
     arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
@@ -95,5 +105,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     // 3rd-party (testing)
+    androidTestImplementation(libs.mockk.android)
     testImplementation(libs.koin.test.junit4)
+    testImplementation(libs.mockk)
 }

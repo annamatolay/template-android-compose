@@ -16,6 +16,7 @@ kotlin = "2.0.0"
 kotlinxCoroutinesAndroid = "1.9.0"
 ksp = "2.0.20-1.0.25"
 lifecycleRuntimeKtx = "2.8.7"
+mockk = "1.13.13"
 timber = "5.0.1"
 uiTextGoogleFonts = "1.7.5"
 # TODO: check for unused dependecies
@@ -52,7 +53,9 @@ firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-perf = { module = "com.google.firebase:firebase-perf" }
 # Other 3rd-party
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
