@@ -1,5 +1,6 @@
 package dev.anmatolay.template.compose
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.anmatolay.template.compose.core.analytic.AnalyticsWrapper
 import dev.anmatolay.template.compose.core.authentication.AuthenticatorWrapper
 import dev.anmatolay.template.compose.core.di.*
@@ -35,8 +36,8 @@ class ModuleCheck: BaseTest() {
         DomainModule().module.verify(
             injections = injectedParameters(
                 definition<AuthenticationUseCase>(AuthenticatorWrapper::class),
-                definition<MonitoringUseCase>(AnalyticsWrapper::class, UserProperty::class),
-                definition<UserIdUseCase>(UserCacheRepository::class)
+                definition<MonitoringUseCase>(AnalyticsWrapper::class, UserProperty::class, FirebaseCrashlytics::class),
+                definition<UserIdUseCase>(UserCacheRepository::class),
             )
         )
         UIModule().module.verify()

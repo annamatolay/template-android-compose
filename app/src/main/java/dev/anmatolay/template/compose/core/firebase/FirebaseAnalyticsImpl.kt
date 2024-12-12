@@ -7,8 +7,10 @@ import dev.anmatolay.template.compose.core.analytic.AnalyticsWrapper
 import org.koin.core.annotation.Single
 
 @Single
-class FirebaseAnalyticsImpl(context: Context) : AnalyticsWrapper {
-    private val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(context)
+class FirebaseAnalyticsImpl(
+    context: Context,
+    private val firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(context),
+) : AnalyticsWrapper {
 
     override fun setUserId(userId: String?) {
         firebaseAnalytics.setUserId(userId)

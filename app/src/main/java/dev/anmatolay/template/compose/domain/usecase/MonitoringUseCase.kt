@@ -9,15 +9,15 @@ import dev.anmatolay.template.compose.core.util.UserProperty
 import dev.anmatolay.template.compose.core.util.UserProperty.Companion.KEY_ANDROID_VERSION
 import dev.anmatolay.template.compose.core.util.UserProperty.Companion.KEY_API_LEVEL
 import dev.anmatolay.template.compose.core.util.UserProperty.Companion.KEY_APP_VERSION
-import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Single
 import timber.log.Timber
 
-@Factory
+@Single
 class MonitoringUseCase(
     private val analyticsWrapper: AnalyticsWrapper,
-    private val userProperty: UserProperty
+    private val userProperty: UserProperty,
+    private val crashlytics: FirebaseCrashlytics = FirebaseCrashlytics.getInstance(),
 ) {
-    private val crashlytics: FirebaseCrashlytics = FirebaseCrashlytics.getInstance()
 
     fun setUserProperties() {
         analyticsWrapper.setUserProperty(KEY_APP_VERSION, userProperty.version)
