@@ -13,9 +13,9 @@ import org.koin.core.annotation.Single
 import timber.log.Timber
 
 @Single
-class FirebaseAuthenticatorImpl : AuthenticatorWrapper {
-
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+class FirebaseAuthenticatorImpl(
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance(),
+) : AuthenticatorWrapper {
 
     override fun signInAnonymously() = callbackFlow {
         try {
